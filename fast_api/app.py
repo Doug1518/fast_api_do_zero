@@ -1,0 +1,25 @@
+from http import HTTPStatus
+
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+
+app = FastAPI(title='Minha API')
+
+
+@app.get('/', status_code=HTTPStatus.OK)
+def read_root():
+    return {'Message': 'Olá mundo'}
+
+
+@app.get('/olamundo', status_code=HTTPStatus.OK, response_class=HTMLResponse)
+def read_ola_mundo():
+    return """
+    <html>
+        <head>
+            <title>HTML olá mundo</title>
+        </head>
+        <body>
+            <h1>Olá Mundo</h1>
+        </body>
+    </html>
+"""
